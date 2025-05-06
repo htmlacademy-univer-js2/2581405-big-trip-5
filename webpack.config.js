@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  entry: './src/main.js',
   module: {
     rules: [
       {
@@ -21,18 +22,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
       minify: false
     }),
+
     new CopyWebpackPlugin({
       patterns: [
-        {
-          from: 'src',
-          to: '',
-          globOptions: {
-            ignore: ['**/index.html'],
-          },
-        },
+        { from: 'public/css', to: 'css' },
+        { from: 'public/fonts', to: 'fonts' },
+        { from: 'public/img', to: 'img' }
       ],
     }),
   ],
