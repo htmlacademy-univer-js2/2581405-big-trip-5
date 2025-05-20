@@ -1,6 +1,6 @@
 import FilterView from '../view/filter.js';
 import SortView from '../view/sort.js';
-import CreateFormView from '../view/create-form.js';
+// import CreateFormView from '../view/create-form.js';
 import EditFormView from '../view/edit-form.js';
 import PointView from '../view/point.js';
 import { render } from '../render.js';
