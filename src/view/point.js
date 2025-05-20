@@ -19,14 +19,7 @@ const createPointTemplate = (point) => `
       </p>
       <h4 class="visually-hidden">Offers</h4>
       <ul class="event__selected-offers">
-        ${point.offers.map(
-          (offer) => `
-            <li class="event__offer">
-              <span class="event__offer-title">${offer.title}</span>
-              &plus;&euro;&nbsp;<span class="event__offer-price">${offer.price}</span>
-            </li>
-          `
-        ).join('')}
+        ${point.offers.map((offer) => `<li class="event__offer"><span class="event__offer-title">${offer.title}</span> &plus;&euro;&nbsp;<span class="event__offer-price">${offer.price}</span></li>`).join('')}
       </ul>
       <button class="event__favorite-btn${point.isFavorite ? ' event__favorite-btn--active' : ''}" type="button">
         <span class="visually-hidden">Add to favorite</span>
@@ -41,7 +34,6 @@ const createPointTemplate = (point) => `
   </li>
 `;
 
-
 export default class PointView {
   constructor(point) {
     this.point = point;
@@ -52,7 +44,7 @@ export default class PointView {
   }
 
   getElement() {
-    if(!this.element){
+    if (!this.element) {
       const temp = document.createElement('div');
       temp.innerHTML = this.getTemplate();
       this.element = temp.firstElementChild;
@@ -64,3 +56,4 @@ export default class PointView {
     this.element = null;
   }
 }
+
