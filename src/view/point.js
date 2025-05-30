@@ -1,6 +1,6 @@
 const createPointTemplate = (point, destinations, offersByType) => {
-  const destination = destinations.find(dest => dest.id === point.destination);
-  const offers = (offersByType[point.type] || []).filter(offer => point.offers.includes(offer.id));
+  const destination = destinations.find((dest) => dest.id === point.destination);
+  const offers = (offersByType[point.type] || []).filter((offer) => point.offers.includes(offer.id));
 
   return `
     <li class="trip-events__item">
@@ -36,9 +36,6 @@ const createPointTemplate = (point, destinations, offersByType) => {
     </li>
   `;
 };
-
-
-
 
 export default class PointView {
   constructor(point, destinations, offersByType) {
