@@ -37,7 +37,8 @@ const createPointTemplate = (point, destinations, offersByType) => {
   `;
 };
 
-import { createPointTemplate } from './point.js';
+
+
 
 export default class PointView {
   constructor(point, destinations, offersByType) {
