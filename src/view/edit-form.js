@@ -28,15 +28,15 @@ export default class Filter {
 }
 
 export function createEditForm(point, destinations, offersByType) {
-  const typeOptions = Object.keys(offersByType).map(type =>
+  const typeOptions = Object.keys(offersByType).map((type) =>
     `<option value="${type}" ${point.type === type ? 'selected' : ''}>${type}</option>`
   ).join('');
 
-  const cityOptions = destinations.map(dest =>`<option value="${dest.id}" ${point.destination === dest.id ? 'selected' : ''}>${dest.city}</option>`
+  const cityOptions = destinations.map((dest) =>`<option value="${dest.id}" ${point.destination === dest.id ? 'selected' : ''}>${dest.city}</option>`
   ).join('');
 
   const offersForType = offersByType[point.type] || [];
-  const offerCheckboxes = offersForType.map(offer =>
+  const offerCheckboxes = offersForType.map((offer) =>
     `<label>
       <input type="checkbox" name="offers" value="${offer.id}" ${point.offers.includes(offer.id) ? 'checked' : ''}>
       ${offer.title} (+€${offer.price})

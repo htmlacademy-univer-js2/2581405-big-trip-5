@@ -9,5 +9,5 @@ export function generatePoints() {
       price: 200,
       offerIds: [1]
     }
-  ]
+  ];
 }
