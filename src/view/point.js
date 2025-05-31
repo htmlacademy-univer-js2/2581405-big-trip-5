@@ -1,3 +1,5 @@
+import AbstractView from '../framework/view/abstract-view.js';
+
 const createPointTemplate = (point, destinations, offersByType) => {
   const destination = destinations.find((dest) => dest.id === point.destination);
   const offers = (offersByType[point.type] || []).filter((offer) => point.offers.includes(offer.id));
@@ -37,28 +39,16 @@ const createPointTemplate = (point, destinations, offersByType) => {
   `;
 };
 
-export default class PointView {
+export default class PointView extends AbstractView {
   constructor(point, destinations, offersByType) {
+    super();
     this.point = point;
     this.destinations = destinations;
     this.offersByType = offersByType;
   }
 
-  getTemplate() {
+  get template() {
     return createPointTemplate(this.point, this.destinations, this.offersByType);
-  }
-
-  getElement() {
-    if (!this.element) {
-      const temp = document.createElement('div');
-      temp.innerHTML = this.getTemplate();
-      this.element = temp.firstElementChild;
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }
 
