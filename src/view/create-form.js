@@ -1,3 +1,5 @@
+import AbstractView from '../framework/view/abstract-view.js';
+
 const createFormTemplate = () => (
   `<form class="trip-events__item  event  event--edit">
     <!--  -->
@@ -29,14 +31,8 @@ const createFormTemplate = () => (
   </form>`
 );
 
-export default class CreateFormView {
-  getTemplate() {
+export default class CreateFormView extends AbstractView {
+  get template() {
     return createFormTemplate();
-  }
-
-  getElement() {
-    const element = document.createElement('div');
-    element.innerHTML = this.getTemplate();
-    return element.firstElementChild;
   }
 }
