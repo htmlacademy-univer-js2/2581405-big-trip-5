@@ -1,4 +1,5 @@
 import PointView from '../view/point-view.js';
+import { render } from '../render.js';
 
 export default class PointPresenter {
   constructor({container, point, destinations, offersByType, onDataChange, onModeChange}) {
@@ -18,11 +19,11 @@ export default class PointPresenter {
     this.pointComponent = new PointView();
 
     this.pointComponent.setFavoriteClickHandler(() => {
-      const updatedPoint = {...this.point, isFavorite: !this.point.isFavorite};
-      this.onDataChange(updatedPoint); 
+      const updatedPoint = { ...this.point, isFavorite: !this.point.isFavorite };
+      this.onDataChange(updatedPoint);
     });
 
-    render(this.pointComponent, this.container); 
+    render(this.pointComponent, this.container);
   }
 
   resetView() {
@@ -31,3 +32,4 @@ export default class PointPresenter {
     }
   }
 }
+
