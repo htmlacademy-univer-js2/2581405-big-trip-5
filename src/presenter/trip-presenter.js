@@ -3,9 +3,8 @@ import { destinations } from '../mock/destinations.js';
 import { offersByType } from '../mock/offers.js';
 import FilterView from '../view/filter.js';
 import SortView from '../view/sort.js';
-import EditFormView from '../view/edit-form.js';
-import PointView from '../view/point.js';
 import { render } from '../render.js';
+import PointPresenter from './point-presenter.js';
 
 const POINTS_COUNT = 3;
 
@@ -18,21 +17,39 @@ export default class TripPresenter {
     this.offersByType = offersByType;
     this.model = new RoutePointsModel();
     this.points = this.model.points.slice(0, POINTS_COUNT);
+
+    this.pointPresenters = [];
   }
 
   init() {
     render(new FilterView(), this.filterContainer);
     render(new SortView(), this.sortContainer);
-    render(
-      new EditFormView(this.points[0], this.destinations, this.offersByType),
-      this.tripContainer
-    );
 
-    for (let i = 1; i < this.points.length; i++) {
-      render(
-        new PointView(this.points[i], this.destinations, this.offersByType),
-        this.tripContainer
-      );
+    this.points.forEach((point) => {
+      const presenter = new PointPresenter({
+        container: this.tripContainer,
+        point,
+        destinations: this.destinations,
+        offersByType: this.offersByType,
+        onDataChange: this.handlePointChange.bind(this),
+        onModeChange: this.handleModeChange.bind(this),
+      });
+      presenter.init();
+      this.pointPresenters.push(presenter);
+    });
+  }
+
+  handlePointChange(updatedPoint) {
+    const index = this.points.findIndex((point) => point.id === updatedPoint.id);
+    if (index !== -1) {
+      this.points[index] = updatedPoint;
+      this.pointPresenters[index].update(updatedPoint);
     }
+    this.model.points = this.points;
+  }
+
+  handleModeChange() {
+    this.pointPresenters.forEach((presenter) => presenter.resetView());
   }
 }
+
