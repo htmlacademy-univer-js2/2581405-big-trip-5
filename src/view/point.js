@@ -50,5 +50,10 @@ export default class PointView extends AbstractView {
   get template() {
     return createPointTemplate(this.point, this.destinations, this.offersByType);
   }
+
+  setFavoriteClickHandler(callback) {
+    this.element.querySelector('.event__favorite-btn')
+      .addEventListener('click', callback);
+  }
 }
 
