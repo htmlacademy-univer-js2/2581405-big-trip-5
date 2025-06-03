@@ -49,7 +49,7 @@ export default class EditFormView extends AbstractStatefulView {
 
 function createEditFormTemplate(point, destinations, offersByType) {
   const typeOptions = Object.keys(offersByType).map((type) =>
-    `<option value="${type}" ${point.type === type ? 'selected' : ''}>${type}</option>`
+    `<option value="${type}" ${point.type == type ? 'selected' : ''}>${type}</option>`
   ).join('');
 
   const cityOptions = destinations.map((dest) =>
@@ -67,7 +67,7 @@ function createEditFormTemplate(point, destinations, offersByType) {
   const currentDestination = destinations.find((d) => d.id == point.destination);
   const description = currentDestination ? `<p>${currentDestination.description}</p>` : '';
   const photos = currentDestination && currentDestination.pictures
-    ? `<div>${currentDestination.pictures.map(img => `<img src="${img.src}" alt="${img.description}">`).join('')}</div>`
+    ? `<div>${currentDestination.pictures.map((img) => `<img src="${img.src}" alt="${img.description}">`).join('')}</div>`
     : '';
 
   return `

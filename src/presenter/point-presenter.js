@@ -42,8 +42,8 @@ export default class PointPresenter {
   }
 
   handleFormSubmit(updatedPoint) {
-    this.onDataChange(updatedPoint); 
-    this.resetView(); 
+    this.onDataChange(updatedPoint);
+    this.resetView();
   }
 
   handleCancelClick() {
