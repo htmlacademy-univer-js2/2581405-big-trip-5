@@ -1,4 +1,4 @@
-import AbstractStatefulView from './view/abstract-stateful-view.js';
+import AbstractStatefulView from '..abstract-stateful-view.js';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
