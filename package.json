@@ -25,14 +25,14 @@
     "node": "20"
   },
   "dependencies": {
-    "dayjs": "1.11.7",
-    "flatpickr": "4.6.13",
+    "dayjs": "^1.11.7",
+    "flatpickr": "^4.6.13",
     "he": "1.2.0"
   },
   "browserslist": [
-  "last 2 Chrome versions",
-  "last 2 Firefox versions",
-  "last 2 Edge versions",
-  "last 2 Safari versions"
-]
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions"
+  ]
 }

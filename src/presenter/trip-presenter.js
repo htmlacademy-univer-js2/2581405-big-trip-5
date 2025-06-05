@@ -27,8 +27,7 @@ export default class TripPresenter {
 
     this.points.forEach((point) => {
       const presenter = new PointPresenter({
-        container: this.tripContainer,
-        point,
+        container: this.tripContainer, point,
         destinations: this.destinations,
         offersByType: this.offersByType,
         onDataChange: this.handlePointChange.bind(this),
