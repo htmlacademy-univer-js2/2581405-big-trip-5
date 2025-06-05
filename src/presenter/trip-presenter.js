@@ -3,7 +3,7 @@ import { destinations } from '../mock/destinations.js';
 import { offersByType } from '../mock/offers.js';
 import FilterView from '../view-v/filter.js';
 import SortView from '../view-v/sort.js';
-import { render } from '../render.js';
+import { render } from '../framework/render.js';
 import PointPresenter from './point-presenter.js';
 
 const POINTS_COUNT = 3;
