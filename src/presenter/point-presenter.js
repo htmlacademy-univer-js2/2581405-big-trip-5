@@ -1,6 +1,7 @@
-import PointView from '../view/point-view.js';
-import EditFormView from '../view/edit-form-view.js';
-import { render, replace, remove } from '../render.js';
+import dayjs from 'dayjs';
+import PointView from '../view-v/point.js';
+import EditFormView from '../framework/view/edit-form-view.js';
+import { render, replace, remove } from '../framework/render.js';
 
 export default class PointPresenter {
   constructor({container, point, destinations, offersByType, onDataChange, onModeChange}) {
@@ -77,6 +78,14 @@ export default class PointPresenter {
       render(this.pointComponent, this.container);
     }
   }
+
+  formatStartDate() {
+    return dayjs(this.point.dateFrom).format('DD/MM/YYYY');
+  }
+
+  calculateDuration() {
+    const startDate = dayjs(this.point.dateFrom);
+    const endDate = dayjs(this.point.dateTo);
+    return endDate.diff(startDate, 'hour');
+  }
 }
-
-

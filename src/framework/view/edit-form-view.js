@@ -1,4 +1,7 @@
-import AbstractStatefulView from './framework/view/abstract-stateful-view.js';
+import AbstractStatefulView from './abstract-stateful-view.js';
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+
 
 export default class EditFormView extends AbstractStatefulView {
   constructor(point, destinations, offersByType) {
@@ -17,6 +20,38 @@ export default class EditFormView extends AbstractStatefulView {
   _restoreHandlers() {
     this.element.querySelector('[name="type"]').addEventListener('change', this._typeChangeHandler.bind(this));
     this.element.querySelector('[name="destination"]').addEventListener('change', this._destinationChangeHandler.bind(this));
+
+    this._initDatePicker();
+  }
+
+  _initDatePicker() {
+    this._datePickerFrom = flatpickr(
+      this.element.querySelector('.event__input--date-start'),
+      {
+        enableTime: true,
+        dateFormat: 'Y-m-d H:i',
+        defaultDate: this._state.dateFrom,
+        onChange: this._dateChangeHandler.bind(this)
+      }
+    );
+
+    this._datePickerTo = flatpickr(
+      this.element.querySelector('.event__input--date-end'),
+      {
+        enableTime: true,
+        dateFormat: 'Y-m-d H:i',
+        defaultDate: this._state.dateTo,
+        onChange: this._dateChangeHandler.bind(this)
+      }
+    );
+  }
+
+  _dateChangeHandler() {
+    const [dateFrom, dateTo] = [this._datePickerFrom.selectedDates[0], this._datePickerTo.selectedDates[0]];
+    this._updateState({
+      dateFrom,
+      dateTo
+    });
   }
 
   _updateState(update) {
@@ -75,6 +110,8 @@ function createEditFormTemplate(point, destinations, offersByType) {
       <select name="type">${typeOptions}</select>
       <select name="destination">${cityOptions}</select>
       <input name="price" value="${point.price}">
+      <input type="text" class="event__input--date-start" value="${point.dateFrom}">
+      <input type="text" class="event__input--date-end" value="${point.dateTo}">
       <div>${offerCheckboxes}</div>
       ${description}
       ${photos}
@@ -82,3 +119,4 @@ function createEditFormTemplate(point, destinations, offersByType) {
     </form>
   `;
 }
+
