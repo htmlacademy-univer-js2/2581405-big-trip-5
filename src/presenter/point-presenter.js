@@ -86,9 +86,6 @@ export default class PointPresenter {
   calculateDuration() {
     const startDate = dayjs(this.point.dateFrom);
     const endDate = dayjs(this.point.dateTo);
-    return endDate.diff(startDate, 'hour'); 
+    return endDate.diff(startDate, 'hour');
   }
 }
-
-
-
