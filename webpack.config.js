@@ -10,8 +10,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // 1
+          loader: 'babel-loader',
         },
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
