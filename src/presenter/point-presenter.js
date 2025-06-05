@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import PointView from '../view-v/point.js';
 import EditFormView from '../view/edit-form-view.js';
-import { render, replace, remove } from '../src/framework/render.js';
+import { render, replace, remove } from '../framework/render.js';
 
 export default class PointPresenter {
   constructor({container, point, destinations, offersByType, onDataChange, onModeChange}) {
