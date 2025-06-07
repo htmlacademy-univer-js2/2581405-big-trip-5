@@ -3,7 +3,7 @@ import { destinations } from '../mock/destinations.js';
 import { offersByType } from '../mock/offers.js';
 import FilterView from '../view-v/filter.js';
 import SortView from '../view-v/sort.js';
-import { render } from '../framework/render.js';
+import { render } from '../framework/render-r.js';
 import PointPresenter from './point-presenter.js';
 
 const POINTS_COUNT = 3;
@@ -42,6 +42,7 @@ export default class TripPresenter {
     const index = this.points.findIndex((point) => point.id === updatedPoint.id);
     if (index !== -1) {
       this.points[index] = updatedPoint;
+
       this.pointPresenters[index].update(updatedPoint);
     }
     this.model.points = this.points;
