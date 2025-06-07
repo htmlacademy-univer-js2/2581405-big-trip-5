@@ -1,5 +1,11 @@
-import {createElement} from './src/render.js';
 import './abstract-view.css';
+
+function createElement(template) {
+  const newElement = document.createElement('div');
+  newElement.innerHTML = template;
+
+  return newElement.firstElementChild;
+}
 
 /** @const {string} Класс, реализующий эффект "покачивания головой" */
 const SHAKE_CLASS_NAME = 'shake';
