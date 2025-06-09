@@ -57,6 +57,7 @@ export default class EditFormView extends AbstractStatefulView {
   _updateState(update) {
     this.updateElement({...this._state, ...update});
   }
+  
   _typeChangeHandler(evt) {
     const newType = evt.target.value;
     this._updateState({
