@@ -27,7 +27,7 @@ export default class Filter {
   }
 }
 
-export function createEditForm(point, destinations, offersByType) {
+export function createEditForm(point, destinations, offersByType) { // 1
   const typeOptions = Object.keys(offersByType).map((type) =>
     `<option value="${type}" ${point.type === type ? 'selected' : ''}>${type}</option>`
   ).join('');
