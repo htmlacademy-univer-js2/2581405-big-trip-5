@@ -1,7 +1,9 @@
 import dayjs from 'dayjs';
 import PointView from '../view-v/point.js';
 import EditFormView from '../framework/view/edit-form-view.js';
-import { render, replace, remove } from '../framework/render.js';
+import { RenderPosition } from '../framework/render-r.js';
+import AbstractView from '../framework/view/abstract-view.js';
+
 
 export default class PointPresenter {
   constructor({container, point, destinations, offersByType, onDataChange, onModeChange}) {
@@ -65,6 +67,7 @@ export default class PointPresenter {
     }
   }
 
+
   update(updatedPoint) {
     this.point = updatedPoint;
 
@@ -88,4 +91,46 @@ export default class PointPresenter {
     const endDate = dayjs(this.point.dateTo);
     return endDate.diff(startDate, 'hour');
   }
+}
+
+function render(component, container, place = RenderPosition.BEFOREEND) {
+  if (!(component instanceof AbstractView)) {
+    throw new Error('Can render only components');
+  }
+
+  if (container === null) {
+    throw new Error('Container element doesn\'t exist');
+  }
+
+  container.insertAdjacentElement(place, component.element);
+}
+
+function replace(newComponent, oldComponent) {
+  if (!(newComponent instanceof AbstractView && oldComponent instanceof AbstractView)) {
+    throw new Error('Can replace only components');
+  }
+
+  const newElement = newComponent.element;
+  const oldElement = oldComponent.element;
+
+  const parent = oldElement.parentElement;
+
+  if (parent === null) {
+    throw new Error('Parent element doesn\'t exist');
+  }
+
+  parent.replaceChild(newElement, oldElement);
+}
+
+function remove(component) {
+  if (component === null) {
+    return;
+  }
+
+  if (!(component instanceof AbstractView)) {
+    throw new Error('Can remove only components');
+  }
+
+  component.element.remove();
+  component.removeElement();
 }
